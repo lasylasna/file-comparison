@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react"; 
+import React, { useEffect, useRef, useState } from "react";
 import CsvDownloader from "./CsvDownloader";
 import csvtojson from "csvtojson";
-import data from "./data.json"; 
-import upload from "./images/upload.png"; 
-import "./Header.css"; 
+import data from "./data.json";
+import upload from "./images/upload.png";
+import dx_logo from "./images/dx_logo.png";
+import "./Header.css";
 
 const Fileconvertor = () => {
   const [jsonData, setJsonData] = useState(null);
@@ -12,8 +13,12 @@ const Fileconvertor = () => {
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
   const [conversionArray, setConversionArray] = useState([]);
-  const [loadingMessage, setLoadingMessage] = useState(`Please click the "Click to add SortInfo" and wait untill it change to "Download"...`);
-  const [loadingMessage2, setLoadingMessage2] = useState(` Don't close the window, it may takes few minutes depending upon the speed of your internet conncetion`)
+  const [loadingMessage, setLoadingMessage] = useState(
+    `Please click on "Click to add SortInfo" and wait until it changes to "Download".`
+  );
+  const [loadingMessage2, setLoadingMessage2] = useState(
+    ` Please keep the window open and be patient as the process may take a few minutes, depending on the speed of your internet connection.`
+  );
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -73,13 +78,12 @@ const Fileconvertor = () => {
     return data;
   };
 
-  const handleClick = async() => { 
-      await filterIfSubset(csvJsonData, jsonData);
-     // updateState(); 
+  const handleClick = async () => {
+    await filterIfSubset(csvJsonData, jsonData);
+    // updateState();
   };
- 
-  
-   const  filterIfSubset=async(csv, textData)=>{
+
+  const filterIfSubset = async (csv, textData) => {
     let tempArray = [
       {
         Address1Postal: "Address1Postal",
@@ -95,7 +99,7 @@ const Fileconvertor = () => {
     let temp = {};
     console.log(csv.length, textData.length);
     //let tempPercentage;
-     //const subset = data.slice(0, 10);
+    //const subset = data.slice(0, 10);
     textData.map((text, i) => {
       temp = {
         Address1Postal: text.Address1Postal,
@@ -123,7 +127,7 @@ const Fileconvertor = () => {
           tempArray[i + 1]["SortInfo"] = csv[j].SORTINFO;
 
           //conversionArray.push(tempArray)
-         // updateArrayLength(tempArray);
+          // updateArrayLength(tempArray);
           break;
         }
       }
@@ -132,60 +136,58 @@ const Fileconvertor = () => {
     //}
     finalArray = tempArray;
     setDataArray(tempArray);
-console.log(dataArray)
+    console.log(dataArray);
     return dataArray;
-  }
+  };
 
   return (
-    <div className="header-div"> 
-    {dataArray.length > 0 ? (
-   null
-    ): (fileName && 
-    <div className="header-loading-message">
-    <p>{loadingMessage} </p>
-    <p>{loadingMessage2} </p>
-    </div>)
-    }
- 
-   
+    <div className="header-div">
+    <img src={dx_logo} className="logo" />
+      {dataArray.length > 0
+        ? null
+        : fileName && (
+            <div className="header-loading-message">
+              <p>{loadingMessage} </p>
+              <hr />
+              <p>{loadingMessage2} </p>
+            </div>
+          )}
+
       <div className="file-uploder">
         <div>
+          <div>
+            <div className="image-upload">
+              <label htmlFor="file-input">
+                <img src={upload} id="upload-img" />
+              </label>
 
-            <div>
-              <div className="image-upload">
-            
-                <label htmlFor="file-input">
-                  <img src={upload} id="upload-img" />
-                </label>
-
-                <input
-                  type="file"
-                  accept=".txt"
-                  onChange={handleFileUpload}
-                  id="file-input"
-                  name="file-input"
-                />
-                <label htmlFor="file-input">{fileName}</label>
-              </div>
-              {dataArray.length > 0 ? (
-                <div>
-                  <CsvDownloader dataArray={dataArray} fileName="data.csv" />
-                </div>
-              ) : (
-                <div>
-                  {fileName && (
-                    <button
-                      className="button-71"
-                      role="button"
-                      onClick={handleClick}
-                    >
-                      Click to add SortInfo
-                    </button>
-                  )}
-                </div>
-              )}
+              <input
+                type="file"
+                accept=".txt"
+                onChange={handleFileUpload}
+                id="file-input"
+                name="file-input"
+              />
+              <label htmlFor="file-input">{fileName}</label>
             </div>
-          
+            {dataArray.length > 0 ? (
+              <div>
+                <CsvDownloader dataArray={dataArray} fileName="data.csv" />
+              </div>
+            ) : (
+              <div>
+                {fileName && (
+                  <button
+                    className="button-71"
+                    role="button"
+                    onClick={handleClick}
+                  >
+                    Click to add SortInfo
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
         </div>{" "}
       </div>
     </div>
