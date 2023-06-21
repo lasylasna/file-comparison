@@ -109,11 +109,16 @@ const Fileconvertor = () => {
   };
 
   const runSort = async () => {
-    setLoading(true);
-    const result = await sortWorker(csvJsonData, jsonData); // non-blocking UI
-    setLoading(false);
-    setCompleted(true);
-    setDataArray(result);
+    try{
+      setLoading(true);
+      const result = await sortWorker(csvJsonData, jsonData); // non-blocking UI
+      setLoading(false);
+      setCompleted(true);
+      setDataArray(result);
+    }catch(error){
+      console.log(error)
+    }
+   
     console.log(dataArray);
   };
 
