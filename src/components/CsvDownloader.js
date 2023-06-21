@@ -25,6 +25,7 @@ class CsvDownloader extends React.Component {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+    window.location.reload();
   }
 
   render() {
