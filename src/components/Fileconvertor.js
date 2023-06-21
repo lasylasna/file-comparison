@@ -7,7 +7,7 @@ import dx_logo from "./images/dx_logo.png";
 import "./Header.css";
 import { useWorker } from "@koale/useworker";
 
-const filterIfSubset = async (csv, textData) => {
+const filterIfSubset = (csv, textData) => {
   let tempArray = [
     {
       Address1Postal: "Address1Postal",
