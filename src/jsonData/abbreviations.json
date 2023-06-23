@@ -1,0 +1,134 @@
+[
+    {
+      "Suffix": "Alley",
+      "Standard": "Aly" 
+    },
+    {
+      "Suffix": "Arcade",
+      "Standard": "Arc" 
+    },
+    {
+      "Suffix": "Avenue",
+      "Standard": "Ave"
+    },
+    {
+      "Suffix": "Boulevard",
+      "Standard": "Blvd"
+    },
+    {
+      "Suffix": "Circle",
+      "Standard": "Cir"
+    },
+    {
+      "Suffix": "Close",
+      "Standard": "Cl"
+    },
+    {
+      "Suffix": "Court",
+      "Standard": "Crt"
+    },
+    {
+      "Suffix": "Crescent",
+      "Standard": "Cres"
+    },
+    {
+      "Suffix": "Drive",
+      "Standard": "Dr"
+    },
+    {
+      "Suffix": "Esplanade",
+      "Standard": "Esp"
+    },
+    {
+      "Suffix": "Glade",
+      "Standard": "Gld"
+    },
+    {
+      "Suffix": "Green",
+      "Standard": "Grn"
+    },
+    {
+      "Suffix": "Grove",
+      "Standard": "Grv"
+    },
+    {
+      "Suffix": "Highway",
+      "Standard": "Hwy"
+    },
+    {
+      "Suffix": "Lane",
+      "Standard": "Lane"
+    },
+    {
+      "Suffix": "Loop",
+      "Standard": "Loop"
+    },
+    {
+      "Suffix": "Mall",
+      "Standard": "Mall"
+    },
+    {
+      "Suffix": "Mews",
+      "Standard": "Mews"
+    },
+    {
+      "Suffix": "Parade",
+      "Standard": "Pde"
+    },
+    {
+      "Suffix": "Place",
+      "Standard": "Pl"
+    },
+    {
+      "Suffix": "Promenade",
+      "Standard": "Prom"
+    },
+    {
+      "Suffix": "Quay",
+      "Standard": "Qy"
+    },
+    {
+      "Suffix": "Rise",
+      "Standard": "Rise"
+    },
+    {
+      "Suffix": "Road",
+      "Standard": "Rd"
+    },
+    {
+      "Suffix": "Square",
+      "Standard": "Sq"
+    },
+    {
+      "Suffix": "State Highway",
+      "Standard": "SH"
+    },
+    {
+      "Suffix": "Steps",
+      "Standard": "Stps"
+    },
+    {
+      "Suffix": "Street",
+      "Standard": "St"
+    },
+    {
+      "Suffix": "Terrace",
+      "Standard": "Tce"
+    },
+    {
+      "Suffix": "Track",
+      "Standard": "Trk"
+    },
+    {
+      "Suffix": "Walk",
+      "Standard": "Walk"
+    },
+    {
+      "Suffix": "Way",
+      "Standard": "Way"
+    },
+    {
+      "Suffix": "Wharf",
+      "Standard": "Whrf"
+    }
+  ]

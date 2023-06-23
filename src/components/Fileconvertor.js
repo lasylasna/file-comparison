@@ -1,59 +1,16 @@
 import React, { useState } from "react";
 import CsvDownloader from "./CsvDownloader";
 import csvtojson from "csvtojson";
-import data from "./data.json";
-import upload from "./images/upload.png";
-import dx_logo from "./images/dx_logo.png";
-import "./Header.css";
+import data from "../jsonData/data.json";
+import upload from "../images/upload.png";
+import dx_logo from "../images/dx_logo.png";
+import "./Fileconvertor.css";
 import { useWorker } from "@koale/useworker";
+import abbreviations from '../jsonData/abbreviations.json'
+import filterIfSubset from "../utils/filterIfSubset"
+import convertToJSON from "../utils/convertToJSON"
 
-const filterIfSubset = (csv, textData) => {
-  let tempArray = [
-    {
-      Address1Postal: "Address1Postal",
-      Address2Postal: "Address2Postal",
-      Address3Postal: "Address3Postal",
-      Address4Postal: "Address4Postal",
-      Address5Postal: "Address5Postal",
-      PostCode: "PostCode",
-      SortInfo: "SortInfo",
-    },
-  ];
-  let finalArray = [];
-  let temp = {};
-  textData.map((text, i) => {
-    temp = {
-      Address1Postal: text.Address1Postal,
-      Address2Postal: text.Address2Postal,
-      Address3Postal: text.Address3Postal,
-      Address4Postal: text.Address4Postal,
-      Address5Postal: text.Address5Postal,
-      PostCode: text.PostCode,
-      SortInfo: text.PostCode,
-    };
-    tempArray[i + 1] = temp;
-    for (let j = 0; j < csv.length; j++) {
-      if (
-        (
-          csv[j].HOUSENUMBER +
-          " " +
-          csv[j].STREETNAME +
-          " " +
-          csv[j].CUSTOM1
-        ).toUpperCase() == text.Address1Postal.toUpperCase() &&
-        parseInt(csv[j].POSTCODE) == parseInt(text.PostCode)
-      ) {
-        tempArray[i + 1]["SortInfo"] = csv[j].SORTINFO;
-        break;
-      }
-    }
-  });
-
-  //}
-  finalArray = tempArray;
-  return finalArray;
-};
-
+ 
 const Fileconvertor = () => {
   const [jsonData, setJsonData] = useState(null);
   const [csvJsonData, setCsvJsonData] = useState(data);
@@ -89,38 +46,19 @@ const Fileconvertor = () => {
     reader.readAsText(file);
   };
 
-  const convertToJSON = (text) => {
-    const lines = text.replace(/\r/g, "").split("\n");
-    const keys = lines[0].split("\t");
-    const data = [];
 
-    for (let i = 1; i < lines.length; i++) {
-      const values = lines[i].split("\t");
-      const obj = {};
-
-      for (let j = 0; j < keys.length; j++) {
-        obj[keys[j]] = values[j];
-      }
-
-      data.push(obj);
-    }
-
-    return data;
-  };
 
   const runSort = async () => {
-    try{
+    try {
       setLoading(true);
-      const result = await sortWorker(csvJsonData, jsonData); // non-blocking UI
+      const result = await sortWorker(csvJsonData, jsonData,abbreviations); // non-blocking UI
       setLoading(false);
       setCompleted(true);
       setDataArray(result);
-    }catch(error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
       setLoading(false);
-    }
-   
-    console.log(dataArray);
+    } 
   };
 
   return (
@@ -165,7 +103,7 @@ const Fileconvertor = () => {
                   name="file-input"
                 />
                 <hr />
-            
+
                 <label htmlFor="file-input">{fileName}</label>
                 <hr />
               </div>
