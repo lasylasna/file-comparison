@@ -1,5 +1,4 @@
-const filterIfSubset = (csv, textData, abbreviations) => {
-  let test;
+const filterIfSubset = (csv, textData) => {
 
   let tempArray = [
     {
@@ -24,35 +23,9 @@ const filterIfSubset = (csv, textData, abbreviations) => {
       PostCode: text.PostCode,
       SortInfo: text.PostCode,
     };
-    
-   if(text.Address1Postal == 'The arc' || 'The Arc'){
-    text.Address1Postal = text.Address2Postal
-   }
-   text.Address1Postal.replace(/"/g, '');
-    for (var key in abbreviations) {
-      let abr = abbreviations[key]["Standard"];
-      let words = text.Address1Postal.trim().split(" ");
-      let lastWord = words[words.length - 1];
-      if (abr.includes(lastWord)) {
-        text.Address1Postal = text.Address1Postal.replace(
-          lastWord,
-          abbreviations[key]["Suffix"]
-        ); // Replace the value with the corresponding key
-
-        break;
-      }
-    }
-  
-  
-
-    if (text.Address1Postal == text.Address2Postal) {
-      text.Address2Postal = text.Address3Postal; 
-    } 
-
     tempArray[i + 1] = temp;
     for (let j = 0; j < csv.length; j++) {
       if (
-        csv[j].SUBURBNAME.toUpperCase() == text.Address2Postal.toUpperCase() &&
         (
           csv[j].HOUSENUMBER +
           " " +
