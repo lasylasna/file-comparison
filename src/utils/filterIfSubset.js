@@ -33,31 +33,34 @@ const filterIfSubset = (csv, textData, abbreviations) => {
  
 
     for (var key in abbreviations) {
-      let abr = abbreviations[key]["Standard"];
+      let abrStd = abbreviations[key]["Standard"];
+      let abrSfx = abbreviations[key]["Suffix"];
       let words;
       let lastWord;
       if (text.Address1Postal) { 
         words = text.Address1Postal.trim().split(" "); 
         lastWord = words[words.length - 1]; 
-        console.log(text.Address1Postal)
-        if (abr == (lastWord)) { 
+       // console.log(abrStd,abrSfx,text.Address1Postal)
+        if(abrSfx == (lastWord)){
+          
+          break;
+        }else if(abrStd == (lastWord)) { 
           text.Address1Postal = text.Address1Postal.replace(
             lastWord,
             abbreviations[key]["Suffix"]
           ); // Replace the value with the corresponding key
-          console.log(text.Address1Postal)
+          //console.log(text.Address1Postal) 
           break;
         }
       }
     }
 
-    if (text.Address1Postal === text.Address2Postal) {
-      text.Address2Postal = text.Address3Postal;
-    }
+    // if (text.Address1Postal === text.Address2Postal) {
+    //   text.Address2Postal = text.Address3Postal;
+    // }
 
     tempArray[i + 1] = temp;
-    for (let j = 0; j < csv.length; j++) {
-
+    for (let j = 0; j < csv.length; j++) { 
       if (
         (
           csv[j].HOUSENUMBER +
