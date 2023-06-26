@@ -39,12 +39,13 @@ const filterIfSubset = (csv, textData, abbreviations) => {
       if (text.Address1Postal) { 
         words = text.Address1Postal.trim().split(" "); 
         lastWord = words[words.length - 1]; 
+        console.log(text.Address1Postal)
         if (abr == (lastWord)) { 
           text.Address1Postal = text.Address1Postal.replace(
             lastWord,
             abbreviations[key]["Suffix"]
           ); // Replace the value with the corresponding key
-          //console.log(text.Address1Postal)
+          console.log(text.Address1Postal)
           break;
         }
       }
