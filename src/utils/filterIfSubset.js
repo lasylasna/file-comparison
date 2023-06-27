@@ -69,7 +69,7 @@ const filterIfSubset = (csv, textData, abbreviations) => {
           " " +
           csv[j].CUSTOM1
         ).toUpperCase() == text.Address1Postal.toUpperCase() &&
-        csv[j].SUBURBNAME.toUpperCase() == text.Address2Postal.toUpperCase() &&
+        //csv[j].SUBURBNAME.toUpperCase() == text.Address2Postal.toUpperCase() &&
         parseInt(csv[j].POSTCODE) == parseInt(text.PostCode)
       ) {
         // console.log(text)
